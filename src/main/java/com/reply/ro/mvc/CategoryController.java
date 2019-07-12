@@ -39,17 +39,18 @@ public class CategoryController {
         }
     }
 
-    @PostMapping
+    @PutMapping
     public ResponseEntity<Category > createCategory(@RequestBody Category category){
         Category res = categoryService.createCategory(category);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<Category > updateCategory(@RequestBody Category category){
+    @PostMapping
+    public ResponseEntity<?> updateCategory(@RequestBody Category category){
         Category res = categoryService.updateCategory(category);
-
+        if(res == null)
+            return new ResponseEntity<>("No category with that name...", HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 

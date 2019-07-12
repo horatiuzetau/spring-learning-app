@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, String> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
     Optional<Category > findByName(String name);
     Set<Category > findByNameIn(Collection<String > names);
 //    Set<Category > findAllByn(List<String > names);
