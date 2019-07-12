@@ -39,14 +39,14 @@ public class ProductController {
         }
     }
 
-    @PostMapping
+    @PutMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product){
         Product res = productService.createProduct(product);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-    @PutMapping
+    @PostMapping
     public ResponseEntity<Product> updateProduct(@RequestBody Product product){
         Product res = productService.updateProduct(product);
 
@@ -85,9 +85,15 @@ public class ProductController {
     public Set<Product > getProductsByCategoryName(@PathVariable String name){
         return productService.getProductsByCategoryName(name);
     }
-//    @PutMapping("/add?c={name}&p={id}")
-//    public Product addCategory(@PathVariable String name, @PathVariable Long id){
-//        return productService.addCategory(name, id);
-//    }
+
+    @PostMapping("/add/c={name}&p={id}")
+    public Product addCategory(@PathVariable String name, @PathVariable Long id){
+        return productService.addCategory(name, id);
+    }
+
+    @PostMapping("/rm-c/{id}/{name}")
+    public Product removeCategory(@PathVariable Long id, @PathVariable String name){
+        return productService.removeCategoryByName(id,name);
+    }
 
 }

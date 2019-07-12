@@ -29,6 +29,7 @@ public class Category {
     private Integer discount;
 
     @ManyToMany(
+            cascade = CascadeType.DETACH,
             mappedBy = "categories",
             fetch = FetchType.LAZY
     )

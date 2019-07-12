@@ -13,4 +13,6 @@ ProductRepository extends JpaRepository<Product, Long> {
 
     Set<Product > findAllByCategories(Category category);
 
+    void deleteAllByCategoriesIs(Category category);
+
 }

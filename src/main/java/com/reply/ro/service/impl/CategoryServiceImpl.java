@@ -3,6 +3,7 @@ package com.reply.ro.service.impl;
 
 import com.reply.ro.models.Category;
 import com.reply.ro.repository.CategoryRepository;
+import com.reply.ro.repository.ProductRepository;
 import com.reply.ro.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public Category createCategory(Category category) {
         return categoryRepository.save(category);
@@ -24,7 +28,15 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category updateCategory(Category category) {
-        return categoryRepository.save(category);
+        Optional<Category > categoryOptional = categoryRepository.findByName(category.getName());
+        if(categoryOptional.isPresent()){
+            category.setId(categoryOptional.get().getId());
+            return categoryRepository.save(category);
+        }else{
+            System.out.println("No category there");
+            return null;
+        }
+
     }
 
     @Override
@@ -42,6 +54,7 @@ public class CategoryServiceImpl implements CategoryService {
         Optional<Category > categoryOptional = categoryRepository.findByName(name);
 
         if(categoryOptional.isPresent()){
+
             categoryRepository.delete(categoryOptional.get());
         }else{
             System.out.println("No category to delete! " + name + " does not exist!");

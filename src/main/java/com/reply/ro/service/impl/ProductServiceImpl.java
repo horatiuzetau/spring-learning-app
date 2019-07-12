@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -143,21 +144,42 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    @Override
     public Set<Product > getProductsByCategoryName(String name){
         Category cat = categoryRepository.findByName(name).get();
 
         return productRepository.findAllByCategories(cat);
     }
 
-//    @Override
-//    public Product addCategory(String name, Long id){
-//        Category category = categoryRepository.findByName(name).get();
-//
-//        Product product = productRepository.findById(id).get();
-//
-//        product.addCategory(category);
-//
-//        return productRepository.save(product);
-//    }
+    @Override
+    public Product addCategory(String name, Long id){
+        Category category = categoryRepository.findByName(name).get();
+        Product product = productRepository.findById(id).get();
 
+        category.addProduct(product);
+        product.addCategory(category);
+
+        return this.updateProduct(product);
+    }
+
+    @Override
+    public void deleteAllByCategoryName(String name) {
+        Optional<Category > categoryOptional = categoryRepository.findByName(name);
+
+        categoryOptional.ifPresent(category -> productRepository.deleteAllByCategoriesIs(category));
+    }
+
+    @Override
+    public Product removeCategoryByName(Long id, String name) {
+        Product product = productRepository.findById(id).get();
+        product.setCategories(
+                product
+                        .getCategories()
+                        .stream()
+                        .filter(a -> !a.getName().equals(name))
+                        .collect(Collectors.toSet())
+        );
+
+        return productRepository.save(product);
+    }
 }
