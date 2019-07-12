@@ -86,6 +86,11 @@ public class ProductController {
         return productService.getProductsByCategoryName(name);
     }
 
+    @GetMapping("/brand/{name}")
+    public Set<Product > getProductsByBrandName(@PathVariable String name){
+        return productService.getProductsByBrandName(name);
+    }
+
     @PostMapping("/add/c={name}&p={id}")
     public Product addCategory(@PathVariable String name, @PathVariable Long id){
         return productService.addCategory(name, id);

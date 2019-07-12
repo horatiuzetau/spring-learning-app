@@ -32,10 +32,6 @@ public class Product {
     private Brand brand;
 
 
-
-
-
-
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private Warrant war;

@@ -1,8 +1,10 @@
 package com.reply.ro.service.impl;
 
+import com.reply.ro.models.Brand;
 import com.reply.ro.models.Category;
 import com.reply.ro.models.Product;
 import com.reply.ro.models.Warrant;
+import com.reply.ro.repository.BrandRepository;
 import com.reply.ro.repository.CategoryRepository;
 import com.reply.ro.repository.ProductRepository;
 import com.reply.ro.service.ProductService;
@@ -23,6 +25,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private BrandRepository brandRepository;
 
 //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! UITE AICI -> intrebarea 3!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @Override
@@ -149,6 +154,14 @@ public class ProductServiceImpl implements ProductService {
         Category cat = categoryRepository.findByName(name).get();
 
         return productRepository.findAllByCategories(cat);
+    }
+
+    @Override
+    public Set<Product > getProductsByBrandName(String name){
+        Brand brand = brandRepository.findBrandByName(name).get();
+
+        return productRepository.findAllByBrand(brand);
+
     }
 
     @Override

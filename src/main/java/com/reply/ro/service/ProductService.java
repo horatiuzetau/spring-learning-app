@@ -40,6 +40,9 @@ public interface ProductService {
 //    GET BY CATEGORY NAME
     Set<Product > getProductsByCategoryName(String name);
 
+//    GET BY BRAND NAME
+    Set<Product > getProductsByBrandName(String name);
+
 //    DELETE ALL FROM CATEGORY
     void deleteAllByCategoryName(String name);
 

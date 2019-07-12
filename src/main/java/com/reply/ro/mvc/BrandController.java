@@ -71,4 +71,19 @@ public class BrandController {
         return new ResponseEntity<>(brandService.removeProduct(productId, brandName), HttpStatus.OK);
     }
 
+    @PostMapping("/add-city/{cityName}/{brandName}")
+    public ResponseEntity<?> addCityToBrand(@PathVariable String cityName, @PathVariable String brandName){
+        return new ResponseEntity<>(brandService.addCity(brandName, cityName), HttpStatus.OK);
+    }
+
+    @PostMapping("/remove-city/{cityName}/{brandName}")
+    public ResponseEntity<?> removeCityFromBrand(@PathVariable String cityName, @PathVariable String brandName){
+        return new ResponseEntity<>(brandService.removeCity(brandName, cityName), HttpStatus.OK);
+    }
+
+    @PostMapping("/{brandName}/add-existing-product/{productId}")
+    public ResponseEntity<? > addExistingProduct(@PathVariable String brandName, @PathVariable Long productId){
+        return new ResponseEntity<>(brandService.addExistingProduct(brandName, productId), HttpStatus.OK);
+    }
+
 }

@@ -30,4 +30,15 @@ public interface BrandService {
 //    REMOVE PRODUCT FROM BRANd
     Brand removeProduct(Long productId, String brandName);
 
+//    ADD CITY TO BRAND
+    Brand addCity(String brandName, String cityName);
+
+//    REMOVE CITY FROM BRAND
+    Brand removeCity(String brandName, String cityName);
+
+//    ADD EXISTING PRODUCT TO BRAND
+    Brand addExistingProduct(String brandName, Long productId);
+
+
 }
+

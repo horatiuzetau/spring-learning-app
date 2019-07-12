@@ -30,12 +30,29 @@ public class Brand {
     private List<Product > products = new ArrayList<>();
 
 
+    @ManyToMany
+    @JoinTable(
+            name = "brand_city",
+            joinColumns = @JoinColumn(name = "brand_id"),
+            inverseJoinColumns = @JoinColumn(name = "city_id")
+    )
+    private Set<City > cities = new HashSet<>();
+
+
     public void addProduct(Product product){
         products.add(product);
     }
 
     public void removeProductById(Long id){
         products.removeIf(p -> p.getId().equals(id));
+    }
+
+    public void addCity(City city){
+        cities.add(city);
+    }
+
+    public void removeCityByName(String name){
+        cities.removeIf(c -> c.getName().equals(name));
     }
 
     public List<Product> getProducts() {
@@ -60,5 +77,13 @@ public class Brand {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(Set<City> cities) {
+        this.cities = cities;
     }
 }
