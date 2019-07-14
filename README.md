@@ -1,4 +1,4 @@
-*Note: If you would like to take a lok and express your opinion about the code, I will be very happy and grateful. Anything that can help me learn is well-received. Thank you!*
+*Note: If you would like to take a look and express your opinion about the code, I will be very happy and grateful. Anything that can help me learn is well-received. Thank you!*
 ### Spring application with the purpouse of learning Hibernate and REST.
 
 This is a simple application like a MarketPlace. It will have Products within Categories. The products belong to specific Brands found in specific Cities. It will also have Users and a Cart. The possibility to buy items, manage them and show them.
