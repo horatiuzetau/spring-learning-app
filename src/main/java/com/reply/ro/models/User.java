@@ -1,7 +1,9 @@
 package com.reply.ro.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
 
@@ -22,7 +24,6 @@ public class User {
     @Column
     private String password;
 
-
     @ManyToMany
     @JoinTable(
            name = "user_role",
@@ -31,11 +32,26 @@ public class User {
     )
     private Set<Role > roles;
 
-
     @OneToMany(mappedBy = "seller")
     @JsonIgnore
     private Set<Product > productsAdded;
 
+    @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Cart cart;
+
+
+
+
+
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public Long getId() {
         return id;

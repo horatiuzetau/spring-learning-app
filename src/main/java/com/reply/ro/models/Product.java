@@ -47,9 +47,23 @@ public class Product {
 
 
 
+    @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Cart > carts;
 
 
+    public void addCart(Cart cart){
+        carts.add(cart);
+    }
 
+
+    public Set<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(Set<Cart> carts) {
+        this.carts = carts;
+    }
 
     public void addCategory(Category c){
         this.categories.add(c);
