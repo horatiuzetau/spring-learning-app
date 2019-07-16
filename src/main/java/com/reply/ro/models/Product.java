@@ -41,6 +41,16 @@ public class Product {
     private Set<Category > categories = new HashSet<>();
 
 
+    @ManyToOne
+    @JoinColumn(name = "seller")
+    private User seller;
+
+
+
+
+
+
+
     public void addCategory(Category c){
         this.categories.add(c);
     }
@@ -75,5 +85,13 @@ public class Product {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
     }
 }

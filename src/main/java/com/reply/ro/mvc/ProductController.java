@@ -85,6 +85,12 @@ public class ProductController {
     public Set<Product > getProductsByCategoryName(@PathVariable String name){
         return productService.getProductsByCategoryName(name);
     }
+
+
+    @GetMapping("/seller/{name}")
+    public Set<Product > getProductsBySellerName(@PathVariable String name){
+        return productService.getProductsBySellerName(name);
+    }
 //    @PutMapping("/add?c={name}&p={id}")
 //    public Product addCategory(@PathVariable String name, @PathVariable Long id){
 //        return productService.addCategory(name, id);

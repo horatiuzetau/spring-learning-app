@@ -2,6 +2,7 @@ package com.reply.ro.repository;
 
 import com.reply.ro.models.Category;
 import com.reply.ro.models.Product;
+import com.reply.ro.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,7 @@ public interface
 ProductRepository extends JpaRepository<Product, Long> {
 
     Set<Product > findAllByCategories(Category category);
+
+    Set<Product > findAllBySeller(User user);
 
 }

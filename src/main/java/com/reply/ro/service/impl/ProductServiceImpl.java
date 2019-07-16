@@ -2,9 +2,11 @@ package com.reply.ro.service.impl;
 
 import com.reply.ro.models.Category;
 import com.reply.ro.models.Product;
+import com.reply.ro.models.User;
 import com.reply.ro.models.Warrant;
 import com.reply.ro.repository.CategoryRepository;
 import com.reply.ro.repository.ProductRepository;
+import com.reply.ro.repository.UserRepository;
 import com.reply.ro.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
 //    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! UITE AICI -> intrebarea 3!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @Override
@@ -148,6 +153,13 @@ public class ProductServiceImpl implements ProductService {
 
         return productRepository.findAllByCategories(cat);
     }
+
+    public Set<Product > getProductsBySellerName(String name){
+        User user = userRepository.findUserByUsername(name).get();
+
+        return productRepository.findAllBySeller(user);
+    }
+
 
 //    @Override
 //    public Product addCategory(String name, Long id){
