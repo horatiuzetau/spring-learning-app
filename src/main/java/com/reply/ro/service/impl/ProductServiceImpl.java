@@ -13,24 +13,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
+import java.security.Principal;
 import java.util.*;
 
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+    @Autowired private ProductRepository productRepository;
 
-    @Autowired
-    private CategoryRepository categoryRepository;
+    @Autowired private CategoryRepository categoryRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
-//    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! UITE AICI -> intrebarea 3!!!!!!!!!!!!!!!!!!!!!!!!!!!
     @Override
-    public Product createProduct(Product product) {
+    public Product createProduct(Product product, Principal principal) {
         if(product.getId() != null){
             System.out.println("No man, nu poti sa adaugi un produs care are deja id.");
 //            AICI AM AVEA UN THROW EXCEPTION
@@ -44,12 +41,16 @@ public class ProductServiceImpl implements ProductService {
             names.add(c.getName());
         }
 
+//        Luam obiectele intregi category
         categories = categoryRepository.findByNameIn(names);
 
-
+//        Le atribuim produsului
         if(categories.size() > 0)
             product.setCategories(categories);
 
+        User user = userRepository.findUserByUsername(principal.getName()).get();
+
+        product.setSeller(user);
 
 
         return productRepository.save(product);
@@ -73,6 +74,8 @@ public class ProductServiceImpl implements ProductService {
 
             product.setWar(warrant);
         }
+
+
 
 //        PARTEA DE UPDATAT CATEGORII
         Set<Category> categories = new HashSet<>();
@@ -148,28 +151,19 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    @Override
     public Set<Product > getProductsByCategoryName(String name){
         Category cat = categoryRepository.findByName(name).get();
 
         return productRepository.findAllByCategories(cat);
     }
 
+    @Override
     public Set<Product > getProductsBySellerName(String name){
         User user = userRepository.findUserByUsername(name).get();
 
         return productRepository.findAllBySeller(user);
     }
 
-
-//    @Override
-//    public Product addCategory(String name, Long id){
-//        Category category = categoryRepository.findByName(name).get();
-//
-//        Product product = productRepository.findById(id).get();
-//
-//        product.addCategory(category);
-//
-//        return productRepository.save(product);
-//    }
 
 }

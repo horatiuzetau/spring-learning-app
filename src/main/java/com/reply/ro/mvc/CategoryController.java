@@ -15,20 +15,18 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
-@RequestMapping(value = "/categories")
 public class CategoryController {
 
-    @Autowired
-    private CategoryServiceImpl categoryService;
+    @Autowired private CategoryServiceImpl categoryService;
 
-    @GetMapping
+    @GetMapping("/categories")
     public ResponseEntity<?> getAllCategories(){
         List<Category > res = categoryService.getAllCategories();
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/categories/{name}")
     public ResponseEntity<?> getCategoryByName(@PathVariable String name){
         Optional<Category > categoryOptional = categoryService.getCategoryByName(name);
 
@@ -39,28 +37,31 @@ public class CategoryController {
         }
     }
 
-    @PostMapping
+
+    @GetMapping("/categories-by-names")
+    public Set<Category > getCategoriesByNames(@RequestBody Map<String,List<String >> names){
+        return categoryService.getByNames(names.get("names"));
+    }
+
+//    DEBUGGING
+
+    @PostMapping("/manage/categories/add")
     public ResponseEntity<Category > createCategory(@RequestBody Category category){
         Category res = categoryService.createCategory(category);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-    @PutMapping
+    @PutMapping("/manage/categories/update")
     public ResponseEntity<Category > updateCategory(@RequestBody Category category){
         Category res = categoryService.updateCategory(category);
 
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/manage/categories/drop/{name}")
     public void deleteAllCategories(@PathVariable String name){
         categoryService.deleteCategory(name);
-    }
-
-    @GetMapping("/B")
-    public Set<Category > getCategoriesByNames(@RequestBody Map<String,List<String >> names){
-        return categoryService.getByNames(names.get("names"));
     }
 
 }

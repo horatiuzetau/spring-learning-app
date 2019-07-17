@@ -28,6 +28,10 @@ public class Role {
     private Set<User > users;
 
 
+
+
+//    GET AND SET WITH INTELECT
+
     public Long getId() {
         return id;
     }

@@ -1,16 +1,20 @@
 package com.reply.ro.service;
 
 
+import com.reply.ro.models.Category;
 import com.reply.ro.models.Product;
+import com.reply.ro.models.User;
 import com.reply.ro.models.Warrant;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface ProductService {
 
 //    ADD
-    Product createProduct(Product product);
+    Product createProduct(Product product, Principal principal);
 
 //    UPDATE
     Product updateProduct(Product product);
@@ -36,4 +40,9 @@ public interface ProductService {
 //    ADD CATEGORY
 //    Product addCategory(String name, Long id);
 
+//    GET ALL BY CATEGORY NAME
+    Set<Product > getProductsByCategoryName(String name);
+
+//    GET ALL BY SELLER NAME
+    Set<Product > getProductsBySellerName(String name);
 }

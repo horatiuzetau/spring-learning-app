@@ -46,6 +46,8 @@ public class Cart {
 
 
 
+//    GET AND SET WITH INTELECT
+
     public Set<Product> getProducts() {
         return products;
     }

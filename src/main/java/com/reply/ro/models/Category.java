@@ -36,9 +36,17 @@ public class Category {
     private Set<Product > products = new HashSet<>();
 
 
+
+
     public void addProduct(Product product){
         products.add(product);
     }
+
+
+
+
+
+//    GET AND SET WITH INTELECT
 
     public Long getId() {
         return id;

@@ -20,8 +20,7 @@ import java.util.Set;
 public class MyUserDetailService implements UserDetailsService {
 
 
-    @Autowired
-    private UserRepository userRepository;
+    @Autowired private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

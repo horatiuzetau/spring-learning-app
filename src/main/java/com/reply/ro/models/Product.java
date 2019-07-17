@@ -58,6 +58,10 @@ public class Product {
     }
 
 
+
+
+//    GET AND SET WITH INTELECT
+
     public Set<Cart> getCarts() {
         return carts;
     }

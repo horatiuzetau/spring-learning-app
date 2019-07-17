@@ -43,6 +43,7 @@ public class User {
 
 
 
+//    GET AND SET WITH INTELECT
 
     public Cart getCart() {
         return cart;
