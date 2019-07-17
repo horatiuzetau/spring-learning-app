@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,6 +24,7 @@ public class Cart {
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User owner;
 
 
@@ -34,9 +36,7 @@ public class Cart {
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )
 //    @JsonManagedReference
-    private Set<Product > products;
-
-
+    private Set<Product > products = new HashSet<>();
 
 
     public void addProduct(Product product){

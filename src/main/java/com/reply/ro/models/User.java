@@ -24,7 +24,7 @@ public class User {
     @Column
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
            name = "user_role",
            joinColumns = @JoinColumn(name = "user_id"),
@@ -37,7 +37,6 @@ public class User {
     private Set<Product > productsAdded;
 
     @OneToOne(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private Cart cart;
 
 

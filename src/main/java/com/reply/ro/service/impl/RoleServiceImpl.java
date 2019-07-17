@@ -11,10 +11,12 @@ import java.util.List;
 @Service
 public class RoleServiceImpl {
 
-    @Autowired
-    private RoleRepository roleRepository;
+    @Autowired private RoleRepository roleRepository;
 
-    public Role createRole(Role role){
+    public Role createRole(String roleName){
+        Role role = new Role();
+        role.setName(roleName);
+
         return roleRepository.save(role);
     }
 

@@ -8,37 +8,51 @@ import com.reply.ro.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
 public class UsersController {
 
-    @Autowired
-    private UserServiceImpl userService;
+    @Autowired private UserServiceImpl userService;
 
-    @Autowired
-    private RoleServiceImpl roleService;
+    @Autowired private RoleServiceImpl roleService;
 
 
-
-    @PostMapping("/add-role")
-    public Role createRole(@RequestBody Role role){
-        return roleService.createRole(role);
+    @GetMapping(path = {"/profile", "/profile/edit"})
+    public User getUser(Principal principal){
+        return userService.getUser(principal);
     }
 
-    @GetMapping("/roles")
+    @PutMapping("/profile/edit")
+    public User updateUser(@RequestBody User user){
+       return userService.updateUser(user);
+    }
+
+    @PostMapping("/register")
+    public User createUser(@RequestBody User user){
+        return userService.createUser(user);
+    }
+
+
+//    DEBUGGING
+
+
+    @GetMapping("/manage/users/all")
+    public List<User > getAll0Users(){
+        return userService.getAllUsers();
+    }
+
+    @GetMapping("/manage/roles/all")
     public List<Role > getAllRoles(){
         return roleService.getAllRoles();
     }
 
-    @PostMapping("/add-user")
-    public User createRole(@RequestBody User user){
-        return userService.createUser(user);
+    @PostMapping("/manage/roles/add")
+    public Role createRole(@RequestParam String roleName){
+        return roleService.createRole(roleName);
     }
 
-    @GetMapping("/users")
-    public List<User > getAllUsers(){
-        return userService.getAllUsers();
-    }
+
+
 }
