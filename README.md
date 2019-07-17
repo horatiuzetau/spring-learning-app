@@ -18,22 +18,25 @@ I will go with the authentification system next. I'll make a different branch th
 ### 17/07/2019  
 I have made a list of usefull endpoints. This was done on cart-feature branch, but I'll merge them together soon.
 ##ENDPOINTS
-
 #### USER:
+<pre>
   * /profile                               GET         -get current profile(user)
   * /profile/edit                          GET/ PUT    -get current profile/ update current logged in user
   * /register                              POST        -register a new user
-  
+</pre>
 #### CART:
+<pre>
   * /cart                                  GET         -get current cart
   * /cart/add/{product_id}                 PUT         -add product to cart
-  
+</pre> 
 #### CATEGORY:                 
+<pre>
   * /categories                            GET         -get all categories
   * /categories/{name}                     GET         -get category by name
   * /categories-by-names                   GET         -get categories by names
-  
+</pre>
 #### ADMIN:
+<pre>
   * /manage/users/all                      GET         -get all users
   * /manage/roles/all                      GET         -get all roles
   * /manage/roles/add                      POST        -add new role
@@ -42,8 +45,9 @@ I have made a list of usefull endpoints. This was done on cart-feature branch, b
   * /manage/categories/drop/{name}         DELETE      -drop category by name
   * /manage/carts                          GET         -get all carts
   * /manage/products/delete/all
-  
+</pre>
 #### PRODUCT:
+<pre>
   * /products                              GET         -get all products
   * /products/{product_id}                 GET         -get product by id
   * /products                              POST        -create new product
@@ -53,4 +57,4 @@ I have made a list of usefull endpoints. This was done on cart-feature branch, b
   * /products/add-w/{product_id}           PUT         -add warranty to product
   * /products/category/{name}              GET         -get products by category name
   * /products/seller/{name}                GET         -get products by seller name
-     
+</pre>
