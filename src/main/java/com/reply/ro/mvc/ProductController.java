@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
-@RequestMapping(value = "/products", consumes = "application/json")
 public class ProductController {
 
     @Autowired private ProductServiceImpl productService;
@@ -97,5 +96,14 @@ public class ProductController {
         productService.deleteAllProducts();
     }
 
+    @PostMapping("/add/c={name}&p={id}")
+    public Product addCategory(@PathVariable String name, @PathVariable Long id){
+        return productService.addCategory(name, id);
+    }
+
+    @PostMapping("/rm-c/{id}/{name}")
+    public Product removeCategory(@PathVariable Long id, @PathVariable String name){
+        return productService.removeCategoryByName(id,name);
+    }
 
 }

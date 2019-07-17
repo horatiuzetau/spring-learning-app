@@ -38,10 +38,19 @@ public interface ProductService {
     Optional<Product > addWarrant(Warrant warrant, Long id);
 
 //    ADD CATEGORY
-//    Product addCategory(String name, Long id);
+    Product addCategory(String name, Long id);
 
-//    GET ALL BY CATEGORY NAME
+//    GET BY CATEGORY NAME
     Set<Product > getProductsByCategoryName(String name);
+
+//    GET BY BRAND NAME
+    Set<Product > getProductsByBrandName(String name);
+
+//    DELETE ALL FROM CATEGORY
+    void deleteAllByCategoryName(String name);
+
+//    REMOVE CATEGORY BY NAME
+    Product removeCategoryByName(Long id, String name);
 
 //    GET ALL BY SELLER NAME
     Set<Product > getProductsBySellerName(String name);

@@ -41,8 +41,8 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/profile/**").hasRole("USER")
-                .antMatchers("/manage/**").hasRole("ADMIN")
+//                .antMatchers("/profile/**").hasRole("USER")
+//                .antMatchers("/manage/**").hasRole("ADMIN")
                 .antMatchers("/**").permitAll()
                 .and()
                 .formLogin()

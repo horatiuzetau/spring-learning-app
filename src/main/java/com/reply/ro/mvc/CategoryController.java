@@ -37,7 +37,6 @@ public class CategoryController {
         }
     }
 
-
     @GetMapping("/categories-by-names")
     public Set<Category > getCategoriesByNames(@RequestBody Map<String,List<String >> names){
         return categoryService.getByNames(names.get("names"));
@@ -53,9 +52,11 @@ public class CategoryController {
     }
 
     @PutMapping("/manage/categories/update")
-    public ResponseEntity<Category > updateCategory(@RequestBody Category category){
-        Category res = categoryService.updateCategory(category);
+    public ResponseEntity<? > updateCategory(@RequestBody Category category){
 
+        Category res = categoryService.updateCategory(category);
+        if(res == null)
+            return new ResponseEntity<>("No category with that name...", HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
