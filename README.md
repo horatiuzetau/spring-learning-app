@@ -20,37 +20,37 @@ I have made a list of usefull endpoints. This was done on cart-feature branch, b
 ##ENDPOINTS
 
 #### USER:
-  */profile                               GET         -get current profile(user)
-  */profile/edit                          GET/ PUT    -get current profile/ update current logged in user
-  */register                              POST        -register a new user
+  * /profile                               GET         -get current profile(user)
+  * /profile/edit                          GET/ PUT    -get current profile/ update current logged in user
+  * /register                              POST        -register a new user
   
 ### CART:
-  */cart                                  GET         -get current cart
-  */cart/add/{product_id}                 PUT         -add product to cart
+  * /cart                                  GET         -get current cart
+  * /cart/add/{product_id}                 PUT         -add product to cart
   
 ### CATEGORY:                 
-  */categories                            GET         -get all categories
-  */categories/{name}                     GET         -get category by name
-  */categories-by-names                   GET         -get categories by names
+  * /categories                            GET         -get all categories
+  * /categories/{name}                     GET         -get category by name
+  * /categories-by-names                   GET         -get categories by names
   
 ### ADMIN:
-  */manage/users/all                      GET         -get all users
-  */manage/roles/all                      GET         -get all roles
-  */manage/roles/add                      POST        -add new role
-  */manage/categories/add                 POST        -add new category
-  */manage/categories/update              PUT         -update category
-  */manage/categories/drop/{name}         DELETE      -drop category by name
-  */manage/carts                          GET         -get all carts
-  */manage/products/delete/all
+  * /manage/users/all                      GET         -get all users
+  * /manage/roles/all                      GET         -get all roles
+  * /manage/roles/add                      POST        -add new role
+  * /manage/categories/add                 POST        -add new category
+  * /manage/categories/update              PUT         -update category
+  * /manage/categories/drop/{name}         DELETE      -drop category by name
+  * /manage/carts                          GET         -get all carts
+  * /manage/products/delete/all
   
 ### PRODUCT:
-  */products                              GET         -get all products
-  */products/{product_id}                 GET         -get product by id
-  */products                              POST        -create new product
-  */products                              PUT         -update existing product
-  */products/drop/{product_id}            DELETE      -drop product by id
-  */products/rm-w/{product_id}            PUT         -remove warranty from product
-  */products/add-w/{product_id}           PUT         -add warranty to product
-  */products/category/{name}              GET         -get products by category name
-  */products/seller/{name}                GET         -get products by seller name
-    
+  * /products                              GET         -get all products
+  * /products/{product_id}                 GET         -get product by id
+  * /products                              POST        -create new product
+  * /products                              PUT         -update existing product
+  * /products/drop/{product_id}            DELETE      -drop product by id
+  * /products/rm-w/{product_id}            PUT         -remove warranty from product
+  * /products/add-w/{product_id}           PUT         -add warranty to product
+  * /products/category/{name}              GET         -get products by category name
+  * /products/seller/{name}                GET         -get products by seller name
+     
