@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
-@RequestMapping(value = "/products", consumes = "application/json")
 public class ProductController {
 
     @Autowired private ProductServiceImpl productService;

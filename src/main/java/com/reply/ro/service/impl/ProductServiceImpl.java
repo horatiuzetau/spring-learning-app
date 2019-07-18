@@ -28,9 +28,19 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(Product product, Principal principal) {
+
         if(product.getId() != null){
             System.out.println("No man, nu poti sa adaugi un produs care are deja id.");
-//            AICI AM AVEA UN THROW EXCEPTION
+//            AICI AM AVEA UN THROW EXCEPTIONE
+            return null;
+        }
+
+//        EXCEPTIONE
+        if(principal != null){
+            User user = userRepository.findUserByUsername(principal.getName()).get();
+
+            product.setSeller(user);
+//            return null;
         }
 
         Set<Category> categories = new HashSet<>();
@@ -48,9 +58,6 @@ public class ProductServiceImpl implements ProductService {
         if(categories.size() > 0)
             product.setCategories(categories);
 
-        User user = userRepository.findUserByUsername(principal.getName()).get();
-
-        product.setSeller(user);
 
 
         return productRepository.save(product);

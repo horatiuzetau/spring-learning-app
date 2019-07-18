@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,7 +31,7 @@ public class User {
            joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role > roles;
+    private Set<Role > roles = new HashSet<>();
 
     @OneToMany(mappedBy = "seller")
     @JsonIgnore
@@ -44,6 +45,16 @@ public class User {
 
 
 //    GET AND SET WITH INTELECT
+
+    public void addRole(String name){
+        Role role = new Role();
+        role.setName(name);
+        roles.add(role);
+    }
+
+    public void addRole(Role role){
+        roles.add(role);
+    }
 
     public Cart getCart() {
         return cart;

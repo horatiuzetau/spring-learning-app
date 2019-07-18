@@ -6,6 +6,9 @@ import com.reply.ro.models.User;
 import com.reply.ro.service.impl.RoleServiceImpl;
 import com.reply.ro.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -25,8 +28,18 @@ public class UsersController {
     }
 
     @PutMapping("/profile/edit")
-    public User updateUser(@RequestBody User user){
-       return userService.updateUser(user);
+    public ResponseEntity<?> updateUser(@RequestBody User user, BindingResult result){
+        User userUpdated = userService.updateUser(user);
+
+        if(result.hasErrors()){
+            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+        }
+
+        if(userUpdated == null){
+            return new ResponseEntity<>("Something went wrong. Maybe the id was not correct!", HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(userUpdated, HttpStatus.OK);
     }
 
     @PostMapping("/register")
